@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.shortcuts import render
-from django.views.generic import ListView, CreateView, UpdateView
+from django.views.generic import ListView, CreateView, UpdateView,DeleteView
 from classroom.forms import ClassroomCreateForm, ClassroomEditForm
 from classroom.models import Classrooom
 from django.urls import reverse, reverse_lazy
@@ -30,6 +30,7 @@ class ClassRoomCreateView(CreateView):
 
 
 class ClassRoomEditView(UpdateView):
+
     template_name = "classroom/classroom_edit_page.html"
     model = Classrooom
     form_class = ClassroomEditForm
@@ -43,3 +44,14 @@ class ClassRoomEditView(UpdateView):
     def form_invalid(self, form):
         print("form invalidddd   ")
         return super().form_invalid(form)
+
+
+class ClassroomDeleteView(DeleteView):
+
+    model = Classrooom
+    template_name = 'classroom/classroom_delete.html'
+    success_url = reverse_lazy('classroom_list')
+
+
+
+
