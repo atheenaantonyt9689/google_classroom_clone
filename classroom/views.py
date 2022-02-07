@@ -1,11 +1,12 @@
+# from msilib.schema import ListView
 from django.shortcuts import render
-from django.views.generic import TemplateView, CreateView
+from django.views.generic import ListView, CreateView
 from classroom.forms import ClassroomCreateForm
 from classroom.models import Classrooom
 from django.urls import reverse, reverse_lazy
 
 # Create your views here.
-class ClassRoomListView(TemplateView):
+class ClassRoomListView(ListView):
 
     model = Classrooom
     template_name = "classroom/classroom_list.html"
