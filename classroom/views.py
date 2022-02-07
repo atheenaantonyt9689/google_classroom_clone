@@ -1,6 +1,7 @@
+from pyexpat import model
 from django.contrib import messages
 from django.shortcuts import render
-from django.views.generic import ListView, CreateView, UpdateView,DeleteView
+from django.views.generic import ListView, CreateView, UpdateView,DeleteView,DetailView
 from classroom.forms import ClassroomCreateForm, ClassroomEditForm
 from classroom.models import Classrooom
 from django.urls import reverse, reverse_lazy
@@ -51,6 +52,12 @@ class ClassroomDeleteView(DeleteView):
     model = Classrooom
     template_name = 'classroom/classroom_delete.html'
     success_url = reverse_lazy('classroom_list')
+
+
+class ClassrooomDetailview(DetailView):
+
+    model = Classrooom
+    template_name = 'classroom/teacher_dashboard.html'
 
 
 
