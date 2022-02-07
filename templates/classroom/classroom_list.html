@@ -12,8 +12,9 @@
       <div class="card">
         <div class="card-body">
           <h3 class="card-title">{{i.classname}}</h3>
-          <h6 class="card-subtitle mb-2 text-muted">{{i.section}}</h6>
+          <h6 class="card-subtitle mb-2 text-muted">{{i.section}} </h6>
           <p>This is an examle page with no contrnt. You can use it as a starter for your custom pages.</p>
+          <a href="{% url 'classroom_edit' i.id %}" class="card-link">Edit</a>
 
         </div>
       </div>
