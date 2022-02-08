@@ -9,6 +9,7 @@ class Classrooom(models.Model):
     room = models.CharField(max_length=30)
     teacher = models.CharField(max_length=50)
     class_code = models.CharField(max_length=30, null=True, blank=True)
+    image = models.ImageField(upload_to='classroom_gallery/',null=True, blank=True)
 
     def __str__(self):
         return self.classname
