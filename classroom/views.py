@@ -18,7 +18,7 @@ class ClassRoomCreateView(CreateView):
     template_name = "classroom/classroom_create.html"
     model = "Classroom"
     form_class = ClassroomCreateForm
-    success_url = reverse_lazy("classroom_create")
+    success_url = reverse_lazy("classroom_list")
 
     def form_valid(self, form):
 
