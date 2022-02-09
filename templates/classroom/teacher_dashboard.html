@@ -10,23 +10,24 @@
   <div class="row">
 
     <!-- Left side columns -->
-    <div class="col-lg-8">
+    <div >
       <div class="row">
 
         <!-- Customers Card -->
-        <div class="col-xxl-4 col-xl-12">
+        <div style="position: center;">
 
-          <div class="card info-card customers-card">
+          <div class="card info-card customers-card" >
+            <img src="/media/{{object.image}}" style="height: 170px;">
 
             <div class="filter">
-              <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+              <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots" style="color: cornsilk;"></i></a>
               <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                 <li class="dropdown-header text-start">
                   <!-- <h6>Filter</h6> -->
                 </li>
 
-                <li><a class="dropdown-item" href="">Edit</a></li>
-                <li><a class="dropdown-item" href="#">Delete</a></li>
+                <li><a class="dropdown-item" href="{% url 'classroom_edit' object.id %}">Edit</a></li>
+                <li><a class="dropdown-item" href="{% url 'classroom_delete' object.id %}">Delete</a></li>
 
 
                 <!-- <li><a class="dropdown-item" href="#">This Year</a></li> -->
@@ -76,15 +77,15 @@
               <h5 class="card-title">Class Code <span>{{object.class_code}}</span></h5>
 
               <div class="d-flex align-items-center">
-                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                <!-- <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                   <i class="bi bi-cart"></i>
-                </div>
-                <div class="ps-3">
+                </div-->
+                <!-- <div class="ps-3">
                   <h6>145</h6>
                   <span class="text-success small pt-1 fw-bold">12%</span> <span
                     class="text-muted small pt-2 ps-1">increase</span>
 
-                </div>
+                </div> -->
               </div>
             </div>
 
@@ -97,7 +98,7 @@
 
             <div class="filter">
               <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+              <!-- <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                 <li class="dropdown-header text-start">
                   <h6>Filter</h6>
                 </li>
@@ -105,20 +106,20 @@
                 <li><a class="dropdown-item" href="#">Today</a></li>
                 <li><a class="dropdown-item" href="#">This Month</a></li>
                 <li><a class="dropdown-item" href="#">This Year</a></li>
-              </ul>
+              </ul> -->
             </div>
 
             <div class="card-body">
-              <h5 class="card-title">Revenue <span>| This Month</span></h5>
+              <!-- <h5 class="card-title">Revenue <span>| This Month</span></h5> -->
 
               <div class="d-flex align-items-center">
                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                  <i class="bi bi-currency-dollar"></i>
+                  <!-- <i class="bi bi-currency-dollar"></i> -->
                 </div>
                 <div class="ps-3">
-                  <h6>$3,264</h6>
-                  <span class="text-success small pt-1 fw-bold">8%</span> <span
-                    class="text-muted small pt-2 ps-1">increase</span>
+                  <!-- <h6>$3,264</h6> -->
+                  <!-- <span class="text-success small pt-1 fw-bold">8%</span> <span
+                    class="text-muted small pt-2 ps-1">increase</span> -->
 
                 </div>
               </div>
