@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     "whitenoise.runserver_nostatic",
+    'cloudinary_storage',
     'django.contrib.staticfiles',
 
     "classroom.apps.ClassroomConfig",
@@ -128,6 +129,14 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dpgy8pcbk',
+    'API_KEY': '692161838544859',
+    'API_SECRET': 'Hje3jV0p4PRtZIGOXLX59LFWk0E'
+}
 
 
 import dj_database_url
