@@ -1,0 +1,1 @@
+web: gunicorn google_classroom_clone.wsgi:application --log-file - --log-level debug
