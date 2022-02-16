@@ -43,6 +43,9 @@ class ClassroomCreateForm(forms.ModelForm):
 class ClassroomEditForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(ClassroomEditForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_method = 'post'
+        self.helper.add_input(Submit('submit', 'Update'))
 
         self.fields["classname"].widget.attrs["placeholder"] = "classroom name"
         self.fields["section"].widget.attrs["placeholder"] = "Section"

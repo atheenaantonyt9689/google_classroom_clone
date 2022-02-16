@@ -32,7 +32,7 @@ class ClassRoomCreateView(CreateView):
 
 class ClassRoomEditView(UpdateView):
 
-    template_name = "classroom/classroom_edit_page.html"
+    template_name = "classroom/classroom_edit.html"
     model = Classrooom
     form_class = ClassroomEditForm
     success_url = reverse_lazy("classroom_list")
