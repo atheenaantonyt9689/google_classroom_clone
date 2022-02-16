@@ -15,7 +15,7 @@ class ClassRoomListView(ListView):
 
 class ClassRoomCreateView(CreateView):
 
-    template_name = "classroom/classroom_create.html"
+    template_name = "classroom/new_classroom_create.html"
     model = "Classroom"
     form_class = ClassroomCreateForm
     success_url = reverse_lazy("classroom_list")

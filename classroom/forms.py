@@ -1,6 +1,8 @@
 # from curses import meta
 from unittest import TestCase
 from django import forms
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Submit
 
 from classroom.models import Classrooom
 
@@ -8,7 +10,9 @@ from classroom.models import Classrooom
 class ClassroomCreateForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(ClassroomCreateForm, self).__init__(*args, **kwargs)
-
+        self.helper = FormHelper()
+        self.helper.form_method = 'post'
+        self.helper.add_input(Submit('submit', 'Create'))
         self.fields["classname"].widget.attrs["placeholder"] = "classroom name"
         self.fields["section"].widget.attrs["placeholder"] = "Section"
         self.fields["subject"].widget.attrs["placeholder"] = "Subject"
