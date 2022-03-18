@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['googleclassroomcloneapp.herokuapp.com','localhost','127.0.0.1'
 # Application definition
 
 INSTALLED_APPS = [
+    "accounts.apps.AccountsConfig",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -110,6 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'accounts.User'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
