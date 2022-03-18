@@ -15,11 +15,11 @@ class StudentSignUpForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super(StudentSignUpForm, self).__init__(*args, **kwargs)
 
-        self.fields["first_name"].widget.attrs["placeholder"] = "first_name"
-        self.fields["last_name"].widget.attrs["placeholder"] = "last_name"
-        self.fields["email"].widget.attrs["placeholder"] = "email"
-        self.fields["phone_number"].widget.attrs["placeholder"] = "phone_number"
-        self.fields["username"].widget.attrs["placeholder"] = "username"
+        self.fields["first_name"].widget.attrs["placeholder"] = "First Name"
+        self.fields["last_name"].widget.attrs["placeholder"] = "Last Name"
+        self.fields["email"].widget.attrs["placeholder"] = "Email "
+        self.fields["phone_number"].widget.attrs["placeholder"] = "Phone Number"
+        self.fields["username"].widget.attrs["placeholder"] = "Username"
         # self.fields["password"].widget.attrs["placeholder"] = "password"
         self.helper = FormHelper()
         self.helper.form_method = 'post'
