@@ -3,7 +3,7 @@ from django.views.generic import TemplateView
 from multiprocessing import AuthenticationError
 from django import forms
 from django.views.generic import TemplateView, CreateView
-from accounts.forms import StudentSignUpForm
+from accounts.forms import StudentSignUpForm, TeacherSignUpForm
 from .models import Student, User
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
@@ -26,4 +26,15 @@ class StudentRegisterView(CreateView):
 
         user = form.save()
 
+        return redirect("/")
+
+
+class TeacherRegisterView(CreateView):
+    model = User
+    form_class = TeacherSignUpForm
+    template_name = "accounts/teacher_register.html"
+
+    def form_valid(self, form):
+        user = form.save()
+        # login(self.request, user)
         return redirect("/")

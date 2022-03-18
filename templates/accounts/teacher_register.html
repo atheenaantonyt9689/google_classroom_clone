@@ -1,0 +1,11 @@
+{% extends 'layouts/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container">
+
+    <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+      <h5>Create an account as a Teacher</h5>
+      {% crispy form %}
+    </div>
+{% endblock %}
