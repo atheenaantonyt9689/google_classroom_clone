@@ -95,7 +95,7 @@ class TeacherSignUpForm(UserCreationForm):
 
         email = self.cleaned_data.get("email")
         if User.objects.filter(email=email).first():
-            raise forms.ValidationError("Email existssss")
+            raise forms.ValidationError("Email already exists")
         return email
 
     @transaction.atomic
