@@ -23,7 +23,7 @@ class StudentSignUpForm(UserCreationForm):
         # self.fields["password"].widget.attrs["placeholder"] = "password"
         self.helper = FormHelper()
         self.helper.form_method = 'post'
-        self.helper.add_input(Submit('submit', 'Save person'))
+        self.helper.add_input(Submit('submit', 'Register'))
 
     class Meta:
 
