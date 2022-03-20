@@ -70,3 +70,7 @@ class LoginPageView(View):
         return render(
             request, self.template_name, context={"form": form, "message": message}
         )
+
+def logout_view(request):
+    logout(request)
+    return redirect('login')
