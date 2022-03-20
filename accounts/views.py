@@ -28,6 +28,7 @@ class StudentRegisterView(CreateView):
     def form_valid(self, form):
 
         user = form.save()
+        login(self.request, user)
 
         return redirect("/")
 
@@ -39,13 +40,14 @@ class TeacherRegisterView(CreateView):
 
     def form_valid(self, form):
         user = form.save()
-        # login(self.request, user)
+        login(self.request, user)
         return redirect("/")
 
 
 class LoginPageView(View):
     template_name = "accounts/login.html"
     form_class = LoginForm
+
 
     def get(self, request):
         form = self.form_class()
