@@ -78,14 +78,13 @@ class TeacherSignUpForm(UserCreationForm):
         self.helper.form_method = "post"
         self.helper.add_input(Submit("submit", "Register"))
 
-
     class Meta:
 
         model = User
         fields = [
             "username",
             "first_name",
-            "last_name",            
+            "last_name",
             "email",
             "phone_number",
             "department",
@@ -112,3 +111,32 @@ class TeacherSignUpForm(UserCreationForm):
         student_obj.department = self.cleaned_data.get("department")
         student_obj.save()
         return user
+
+
+# class LoginForm(forms.Form):
+#     username = forms.CharField(label="User Name", max_length=100)
+#     password = forms.CharField(max_length=100, widget=forms.PasswordInput)
+
+class LoginForm(forms.Form):
+
+    username = forms.CharField( max_length=100)
+    password = forms.CharField(max_length=100)
+
+    def __init__(self, *args, **kwargs):
+        super(LoginForm, self).__init__(*args, **kwargs)
+
+        self.fields["username"].widget.attrs["placeholder"] = "Username"
+        self.fields["password"].widget.attrs["placeholder"] = "Password"
+        self.helper = FormHelper()
+        self.helper.form_method = "post"
+        self.helper.add_input(Submit("submit", "Login"))
+
+    class Meta:
+
+        model = User
+        fields = [
+            "username",
+            'password'
+
+        ]
+
