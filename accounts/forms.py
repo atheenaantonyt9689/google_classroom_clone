@@ -120,11 +120,11 @@ class TeacherSignUpForm(UserCreationForm):
 class LoginForm(forms.Form):
 
     username = forms.CharField( max_length=100)
-    password = forms.CharField(max_length=100)
+    password = forms.CharField(max_length=100, widget=forms.PasswordInput)
 
     def __init__(self, *args, **kwargs):
         super(LoginForm, self).__init__(*args, **kwargs)
-
+        
         self.fields["username"].widget.attrs["placeholder"] = "Username"
         self.fields["password"].widget.attrs["placeholder"] = "Password"
         self.helper = FormHelper()
@@ -137,6 +137,6 @@ class LoginForm(forms.Form):
         fields = [
             "username",
             'password'
-
+            
         ]
 
