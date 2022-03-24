@@ -15,7 +15,7 @@ from django.views.generic import View
 # Create your views here.
 
 
-class Front_pageView(TemplateView):
+class FrontPageView(TemplateView):
 
     template_name = "accounts/login.html"
 
