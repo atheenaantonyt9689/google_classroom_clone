@@ -7,5 +7,7 @@
     <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
       <h5>Create an account as a Teacher</h5>
       {% crispy form %}
+      <span>Have an Account ? <a href="{% url 'login' %}">LogIn </a></span>
+     
     </div>
 {% endblock %}
