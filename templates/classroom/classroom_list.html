@@ -1,24 +1,19 @@
 {% extends 'layouts/base.html' %}
 {% block content %}
-{% if user.is_authenticated%}
+
 <p>Welcome {{user}}</p>
-
-
 
 <div class="pagetitle">
   <div style="text-align:right ; ">
-    <a  style="margin-right:15px ;" href="{% url 'logout' %}" >Logout</a>
+    <a class="btn btn-primary" style="margin-bottom: 15px; margin-right:15px ;" href="{% url 'classroom_create'%}" role="button">Create Classroom</a>
   
   </div>
+
   <h2 style="text-align: center;">Available Classrooms</h2>  
 </div>
 
 
 <!-- End Page Title -->
-<div style="text-align:right ; ">
-  <a class="btn btn-primary" style="margin-bottom: 15px; margin-right:15px ;" href="{% url 'classroom_create'%}" role="button">Create Classroom</a>
-
-</div>
 
 <section class="section">
 
@@ -43,5 +38,5 @@
 
   </div>
 </section>
-{% endif %}
+
 {% endblock content %}
