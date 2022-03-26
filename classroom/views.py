@@ -1,4 +1,3 @@
-from pyexpat import model
 from django.contrib import messages
 from django.shortcuts import render
 from django.views.generic import ListView, CreateView, UpdateView,DeleteView,DetailView
@@ -6,9 +5,27 @@ from classroom.forms import ClassroomCreateForm, ClassroomEditForm
 from classroom.models import Classrooom
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import AccessMixin
+
+# class StudentRequiredMixin(AccessMixin):
+
+#     def dispatch( self,request,*args,**kwargs):
+#         if not request.user.is_student:
+#             return self.handle_no_permission()
+#         return super().dispatch(request,*args,**kwargs)
+
+class TeacherRequiredMixin(AccessMixin):
+
+    def dispatch( self,request,*args,**kwargs):
+        if not request.user.is_teacher:
+            return self.handle_no_permission()
+        return super().dispatch(request,*args,**kwargs)
+
+
 
 
 # Create your views here.
+
 class ClassRoomListView(LoginRequiredMixin,ListView):
 
     model = Classrooom
@@ -16,7 +33,7 @@ class ClassRoomListView(LoginRequiredMixin,ListView):
     login_url = 'login'
 
 
-class ClassRoomCreateView(LoginRequiredMixin,CreateView):
+class ClassRoomCreateView(LoginRequiredMixin,TeacherRequiredMixin,CreateView):
 
     template_name = "classroom/new_classroom_create.html"
     model = "Classroom"
@@ -34,7 +51,7 @@ class ClassRoomCreateView(LoginRequiredMixin,CreateView):
         return super().form_invalid(form)
 
 
-class ClassRoomEditView(LoginRequiredMixin,UpdateView):
+class ClassRoomEditView(LoginRequiredMixin,TeacherRequiredMixin,UpdateView):
 
     template_name = "classroom/classroom_edit.html"
     model = Classrooom
@@ -52,7 +69,7 @@ class ClassRoomEditView(LoginRequiredMixin,UpdateView):
         return super().form_invalid(form)
 
 
-class ClassroomDeleteView(LoginRequiredMixin,DeleteView):
+class ClassroomDeleteView(LoginRequiredMixin,TeacherRequiredMixin,DeleteView):
 
     model = Classrooom
     template_name = 'classroom/classroom_delete.html'
