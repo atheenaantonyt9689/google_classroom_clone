@@ -1,0 +1,89 @@
+{% extends 'layouts/base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+
+<div class="pagetitle">
+    <h1>Assignment Create</h1>
+
+</div><!-- End Page Title -->
+
+<section class="section contact">
+
+    <div class="row gy-4">
+
+        <div class="col-xl-8">
+            <div class="card p-4">
+                {% crispy form %}
+                <!-- <form action="forms/contact.php" method="post" class="php-email-form">
+                    {% csrf_token %}
+                    <div class="row gy-4">
+      
+                      <div class="col-md-12">
+                        {{ form.title|as_crispy_field }}
+                      </div>
+      
+                      
+      
+                      <div class="col-md-12 quill-editor-default">
+                        {{ form.instructions|as_crispy_field }}
+                      </div> -->
+
+                <!-- <div class="col-md-12 quill-editor-default">
+                        <textarea class="form-control" name="message" rows="6" placeholder="Message" required></textarea>
+                      </div> -->
+                <!-- <div class="col-md-12">
+                        <input type="text" class="form-control" name="subject" placeholder="Subject" required>
+                      </div>
+       -->
+
+
+            </div>
+            <!-- </form> -->
+        </div>
+
+    </div>
+    <!-- <div class="col-xl-4">
+                <div class="card p-4"> -->
+    <!-- <form action="forms/contact.php" method="post" class="php-email-form"> -->
+    <!-- <div class="row gy-4">
+      
+                      <div class="col-md-6">
+                        <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+                      </div>
+      
+                      <div class="col-md-6 ">
+                        <input type="email" class="form-control" name="email" placeholder="Your Email" required>
+                      </div>
+      
+                      <div class="col-md-12">
+                        <input type="text" class="form-control" name="subject" placeholder="Subject" required>
+                      </div>
+      
+                      <div class="col-md-12">
+                        <textarea class="form-control" name="message" rows="6" placeholder="Message" required></textarea>
+                      </div>
+      
+                      <div class="col-md-12 text-center"> -->
+    <!-- <div class="loading">Loading</div>
+                        <div class="error-message"></div> -->
+    <!-- <div class="sent-message">Your message has been sent. Thank you!</div> -->
+
+    <!-- <button type="submit">Send Message</button> -->
+    </div>
+
+    </div>
+    </form>
+    </div>
+
+    </div>
+
+
+
+    </div>
+
+</section>
+
+
+
+{% endblock %}

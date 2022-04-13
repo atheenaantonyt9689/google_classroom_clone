@@ -7,8 +7,8 @@ from django.views.generic import (
     DeleteView,
     DetailView,
 )
-from classroom.forms import ClassroomCreateForm, ClassroomEditForm
-from classroom.models import Classrooom
+from classroom.forms import AssignmentCreateForm, ClassroomCreateForm, ClassroomEditForm
+from classroom.models import Assignment, Classrooom
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import AccessMixin
@@ -87,3 +87,21 @@ class ClassrooomDetailview(LoginRequiredMixin, DetailView):
     model = Classrooom
     template_name = "classroom/teacher_dashboard.html"
     login_url = "login"
+
+
+class AssignmentCreateView(LoginRequiredMixin, TeacherRequiredMixin, CreateView):
+
+    template_name = "classroom/assignment/assignment_create.html"
+    model = Assignment
+    form_class = AssignmentCreateForm
+    success_url = reverse_lazy("classroom_list")
+    login_url = "login"
+
+    def form_valid(self, form):
+
+        print("form validdd")
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        print("form invalid  ")
+        return super().form_invalid(form)
