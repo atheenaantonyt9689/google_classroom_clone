@@ -1,4 +1,3 @@
-# from curses import meta
 from unittest import TestCase
 from django import forms
 from crispy_forms.helper import FormHelper
@@ -116,11 +115,12 @@ class AssignmentCreateForm(forms.ModelForm):
         # print("first instance ",instance)
         if commit:
             instance.save()
+            title = self.cleaned_data["title"]
             file = self.cleaned_data["files"]
             assignment = self.cleaned_data["assignment"]
-            print("assignmentf  ", assignment)
-        feedfile_obj = FeedFile.objects.create(files=file, assignment=assignment)
+        feedfile_obj = FeedFile.objects.create(files=file, assignment=assignment,title=title)
         # print("objectsss  ",feedfile_obj)
         feedfile_obj.save()
-        print("instance ", instance)
         return instance
+
+
