@@ -28,7 +28,7 @@ class Assignment(models.Model):
     # updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.topic
+        return str(self.topic)
 
 
 class FeedFile(models.Model):
@@ -39,4 +39,4 @@ class FeedFile(models.Model):
     )
 
     def __str__(self):
-        return self.title
+        return str(self.title)
