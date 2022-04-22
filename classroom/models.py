@@ -35,5 +35,8 @@ class FeedFile(models.Model):
     title = models.CharField(max_length=100, null=True, blank=True)
     files = models.FileField(upload_to="assignment_files/", null=True, blank=True)
     assignment = models.ForeignKey(
-        Assignment, on_delete=models.SET_NULL, null=True, default=None
+        Assignment, on_delete=models.CASCADE, null=True, default=None
     )
+
+    def __str__(self):
+        return self.title

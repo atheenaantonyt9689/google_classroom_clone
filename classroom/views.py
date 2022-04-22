@@ -7,8 +7,13 @@ from django.views.generic import (
     DeleteView,
     DetailView,
 )
-from classroom.forms import AssignmentCreateForm, ClassroomCreateForm, ClassroomEditForm
-from classroom.models import Assignment, Classrooom
+from classroom.forms import (
+    AssignmentCreateForm,
+    AssignmentEditForm,
+    ClassroomCreateForm,
+    ClassroomEditForm,
+)
+from classroom.models import Assignment, Classrooom, FeedFile
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import AccessMixin
@@ -100,6 +105,32 @@ class AssignmentCreateView(LoginRequiredMixin, TeacherRequiredMixin, CreateView)
     def form_valid(self, form):
 
         print("form validdd")
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        print("form invalid  ")
+        return super().form_invalid(form)
+
+
+class AssignmentEditView(LoginRequiredMixin, TeacherRequiredMixin, UpdateView):
+
+    template_name = "classroom/assignment/assignment_edit.html"
+    model = Assignment
+    form_class = AssignmentEditForm
+    success_url = reverse_lazy("classroom_list")
+    login_url = "login"
+
+    def get_initial(self):
+        initial = super().get_initial()
+        assignmnet_obj = Assignment.objects.all()
+        feedfile_obj = FeedFile.objects.all()
+        for feed_obj in feedfile_obj:
+            initial["title"] = feed_obj.title
+            initial["assignment"] = feed_obj.assignment
+            initial["files"] = feed_obj.files
+        return initial
+
+    def form_valid(self, form):
         return super().form_valid(form)
 
     def form_invalid(self, form):
