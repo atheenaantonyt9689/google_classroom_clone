@@ -154,3 +154,10 @@ class AssignmentListView(LoginRequiredMixin, ListView):
         # context['assignemnt_list'] = Assignment.objects.all()
         context["assignemnt_list"] = FeedFile.objects.all()
         return context
+
+class AssignmentDeleteView(LoginRequiredMixin, TeacherRequiredMixin, DeleteView):
+
+    model = Assignment
+    template_name = "classroom/assignment/assignment_delete.html"
+    success_url = reverse_lazy("assignment_list")
+    login_url = "login"
