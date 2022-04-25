@@ -2,6 +2,7 @@ import datetime
 from django.db import models
 from accounts.models import Student
 from django.utils import timezone
+
 # Create your models here.
 class Classrooom(models.Model):
 
@@ -21,7 +22,6 @@ class Classrooom(models.Model):
         return FeedFile.objects.count()
 
 
-
 class Assignment(models.Model):
     classroom = models.ForeignKey(Classrooom, on_delete=models.CASCADE)
     topic = models.CharField(max_length=100)
@@ -29,7 +29,7 @@ class Assignment(models.Model):
     student = models.ManyToManyField(Student)
     points = models.IntegerField(default=10)
     due_date = models.DateTimeField(null=True, blank=True)
-    created_time = models.DateTimeField( auto_now_add=True)
+    created_time = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
@@ -44,11 +44,10 @@ class Assignment(models.Model):
 
 
 class FeedFile(models.Model):
-    title = models.CharField(max_length=100, null=True, blank=True)
     files = models.FileField(upload_to="assignment_files/", null=True, blank=True)
     assignment = models.ForeignKey(
         Assignment, on_delete=models.CASCADE, null=True, default=None
     )
 
     def __str__(self):
-        return str(self.title)
+        return "Assignment:{} - File:{}".format(self.assignment, self.id)

@@ -99,7 +99,7 @@ class AssignmentCreateView(LoginRequiredMixin, TeacherRequiredMixin, CreateView)
     template_name = "classroom/assignment/assignment_create.html"
     model = Assignment
     form_class = AssignmentCreateForm
-    success_url = reverse_lazy("classroom_list")
+    success_url = reverse_lazy("assignment_list")
     login_url = "login"
 
     def form_valid(self, form):
@@ -125,7 +125,7 @@ class AssignmentEditView(LoginRequiredMixin, TeacherRequiredMixin, UpdateView):
         assignmnet_obj = Assignment.objects.all()
         feedfile_obj = FeedFile.objects.all()
         for feed_obj in feedfile_obj:
-            initial["title"] = feed_obj.title
+            # initial["title"] = feed_obj.title
             initial["assignment"] = feed_obj.assignment
             initial["files"] = feed_obj.files
         return initial
@@ -154,6 +154,7 @@ class AssignmentListView(LoginRequiredMixin, ListView):
         # context['assignemnt_list'] = Assignment.objects.all()
         context["assignemnt_list"] = FeedFile.objects.all()
         return context
+
 
 class AssignmentDeleteView(LoginRequiredMixin, TeacherRequiredMixin, DeleteView):
 

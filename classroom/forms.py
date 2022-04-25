@@ -76,7 +76,6 @@ class ClassroomEditForm(forms.ModelForm):
 
 class AssignmentCreateForm(forms.ModelForm):
 
-    title = forms.CharField(max_length=100, required=False)
     files = forms.FileField(
         widget=forms.ClearableFileInput(attrs={"multiple": True}), required=False
     )
@@ -95,18 +94,16 @@ class AssignmentCreateForm(forms.ModelForm):
         self.fields["student"].queryset = Student.objects.all()
         self.fields["assignment"].queryset = Assignment.objects.all()
         self.fields["points"].widget.attrs["placeholder"] = "Points"
-        self.fields["title"].widget.attrs["placeholder"] = "Title"
 
     class Meta:
         model = Assignment
         fields = [
-            "files",
-            "title",
+            "topic",
             "instructions",
+            "files",
             "classroom",
             "student",
             "points",
-            "topic",
             "due_date",
         ]
 
@@ -115,11 +112,11 @@ class AssignmentCreateForm(forms.ModelForm):
         # print("first instance ",instance)
         if commit:
             instance.save()
-            title = self.cleaned_data["title"]
             file = self.cleaned_data["files"]
             assignment = self.cleaned_data["assignment"]
         feedfile_obj = FeedFile.objects.create(
-            files=file, assignment=assignment, title=title
+            files=file,
+            assignment=assignment,
         )
         # print("objectsss  ",feedfile_obj)
         feedfile_obj.save()
@@ -128,7 +125,6 @@ class AssignmentCreateForm(forms.ModelForm):
 
 class AssignmentEditForm(forms.ModelForm):
 
-    title = forms.CharField(max_length=100, required=False)
     files = forms.FileField(
         widget=forms.ClearableFileInput(attrs={"multiple": True}), required=False
     )
@@ -147,18 +143,16 @@ class AssignmentEditForm(forms.ModelForm):
         self.fields["student"].queryset = Student.objects.all()
         self.fields["assignment"].queryset = Assignment.objects.all()
         self.fields["points"].widget.attrs["placeholder"] = "Points"
-        self.fields["title"].widget.attrs["placeholder"] = "Title"
 
     class Meta:
         model = Assignment
         fields = [
-            "files",
-            "title",
+            "topic",
             "instructions",
+            "files",
             "classroom",
             "student",
             "points",
-            "topic",
             "due_date",
             "assignment",
         ]
@@ -167,12 +161,11 @@ class AssignmentEditForm(forms.ModelForm):
         instance = super().save(False)
         if commit:
             instance.save()
-            title = self.cleaned_data["title"]
             files = self.cleaned_data["files"]
             assignment = self.cleaned_data["assignment"]
 
             objj, created = FeedFile.objects.update_or_create(
-                assignment=assignment, defaults={"title": title, "files": files}
+                assignment=assignment, defaults={"files": files}
             )
             # print("objj, created ",objj, created)
             objj.save()
