@@ -117,7 +117,7 @@ class AssignmentEditView(LoginRequiredMixin, TeacherRequiredMixin, UpdateView):
     template_name = "classroom/assignment/assignment_edit.html"
     model = Assignment
     form_class = AssignmentEditForm
-    success_url = reverse_lazy("classroom_list")
+    success_url = reverse_lazy("assignment_list")
     login_url = "login"
 
     def get_initial(self):
