@@ -3,6 +3,7 @@ from django.urls import path
 from .views import (
     AssignmentCreateView,
     AssignmentEditView,
+    AssignmentListView,
     ClassRoomCreateView,
     ClassRoomListView,
     ClassRoomEditView,
@@ -19,5 +20,6 @@ urlpatterns = [
     # assignment_part
     path("assignment/create",AssignmentCreateView.as_view(),name="classroom_assignment_create"),
     path("assignment/<int:pk>/edit",AssignmentEditView.as_view(),name="classroom_assignment_edit"),
+    path("assignment/list", AssignmentListView.as_view(), name="assignment_list"),
 
 ]

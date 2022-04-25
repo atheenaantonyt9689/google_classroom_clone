@@ -136,3 +136,21 @@ class AssignmentEditView(LoginRequiredMixin, TeacherRequiredMixin, UpdateView):
     def form_invalid(self, form):
         print("form invalid  ")
         return super().form_invalid(form)
+
+
+class AssignmentListView(LoginRequiredMixin, ListView):
+
+    model = Classrooom
+    template_name = "classroom/assignment/assignment_list.html"
+    login_url = "login"
+
+    def get_queryset(self):
+        return self.model.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["classroom"] = self.get_queryset()
+        context["classroom_user"] = self.request.user
+        # context['assignemnt_list'] = Assignment.objects.all()
+        context["assignemnt_list"] = FeedFile.objects.all()
+        return context

@@ -1,7 +1,7 @@
-from tkinter import CASCADE
+import datetime
 from django.db import models
 from accounts.models import Student
-
+from django.utils import timezone
 # Create your models here.
 class Classrooom(models.Model):
 
@@ -16,6 +16,11 @@ class Classrooom(models.Model):
     def __str__(self):
         return self.classname
 
+    @property
+    def get_assignment_count(self):
+        return FeedFile.objects.count()
+
+
 
 class Assignment(models.Model):
     classroom = models.ForeignKey(Classrooom, on_delete=models.CASCADE)
@@ -24,11 +29,18 @@ class Assignment(models.Model):
     student = models.ManyToManyField(Student)
     points = models.IntegerField(default=10)
     due_date = models.DateTimeField(null=True, blank=True)
-    created_at = models.DateTimeField(auto_now=True)
-    # updated_at = models.DateTimeField(auto_now=True)
+    created_time = models.DateTimeField( auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return str(self.topic)
+
+    # def save(self, *args, **kwargs):
+    #     ''' On save, update timestamps '''
+    #     if not self.id:
+    #         self.created = timezone.now()
+    #     # self.modified = timezone.now()
+    #     return super(Assignment, self).save(*args, **kwargs)
 
 
 class FeedFile(models.Model):
