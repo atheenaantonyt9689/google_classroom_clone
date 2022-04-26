@@ -104,7 +104,7 @@
         
         
         <div class="col-lg-8 col-md-6">
-          {% for i in assignemnt_list %}          
+          {% for i in assignment_data %}
           <div class="card info-card sales-card">
 
             <div class="filter">
@@ -113,9 +113,10 @@
                 <li class="dropdown-header text-start">
                   <!-- <h6>Filter</h6> -->
                 </li>
-                 <li><a class="dropdown-item" href="{% url 'classroom_assignment_edit' i.id %}">Edit</a></li>
+                {% comment %} {% for k in asss_list %} {% endcomment %}
+                 <li><a class="dropdown-item" href="{% url 'classroom_assignment_edit' i.assignment.id %}">Edit</a></li>
                 <li><a class="dropdown-item" href="{% url 'assignment_delete' i.id %}">Delete</a></li> 
-                
+                {% comment %} {% endfor %} {% endcomment %}
               </ul>
             </div>
 
@@ -129,7 +130,7 @@
                   <!-- <h6>145</h6> -->
                   <span class=" small pt-1 ">{{classroom_user.teacher}} posted a new assignment {{i.assignment.topic}} </span> <br>
                   {% comment %} {% if updated_at in i.assignment %} {% endcomment %}
-                    <span>edited{{ i.assignment.updated_at }} </span>
+                    {% comment %} <span>edited{{ i.assignment.updated }} </span> {% endcomment %}
                   {% comment %} {% else %}                   {% endcomment %}
                     <span>created  {{ i.assignment.created_time }}</span>
                   {% comment %} {% endif %} {% endcomment %}

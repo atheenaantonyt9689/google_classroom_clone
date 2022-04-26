@@ -151,8 +151,9 @@ class AssignmentListView(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         context["classroom"] = self.get_queryset()
         context["classroom_user"] = self.request.user
-        # context['assignemnt_list'] = Assignment.objects.all()
-        context["assignemnt_list"] = FeedFile.objects.all()
+        # context['asss_list'] = Assignment.objects.all()
+        context["assignment_data"] = FeedFile.objects.all()
+
         return context
 
 
