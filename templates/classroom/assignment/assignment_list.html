@@ -128,11 +128,11 @@
                 </div>
                 <div class="ps-3">
                   <!-- <h6>145</h6> -->
-                  <span class=" small pt-1 ">{{classroom_user.teacher}} posted a new assignment {{i.assignment.topic}} </span> <br>
+                  <span class=" text-dark ">{{classroom_user.teacher}} posted a new assignment : {{i.assignment.topic}} </span> <br>
                   {% comment %} {% if updated_at in i.assignment %} {% endcomment %}
                     {% comment %} <span>edited{{ i.assignment.updated }} </span> {% endcomment %}
                   {% comment %} {% else %}                   {% endcomment %}
-                    <span>created  {{ i.assignment.created_time }}</span>
+                    <span class="text-info">created  {{ i.assignment.created_time }}</span>
                   {% comment %} {% endif %} {% endcomment %}
                 </div>
               </div>
