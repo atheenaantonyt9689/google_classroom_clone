@@ -17,9 +17,7 @@ class Classrooom(models.Model):
     def __str__(self):
         return self.classname
 
-    @property
-    def get_assignment_count(self):
-        return FeedFile.objects.count()
+
 
 
 class Assignment(models.Model):
