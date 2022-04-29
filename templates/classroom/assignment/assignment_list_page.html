@@ -1,0 +1,107 @@
+{% extends 'layouts/base.html' %}
+{% block content %}
+
+
+<section class="section dashboard">
+  {% for ass_data in assignment_data%}
+      <div class="row">
+
+       
+        <!-- Sales Card -->
+        <div class="col-lg-12 col-md-6">
+          <div class="card info-card sales-card">
+
+            <div class="filter">
+              <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                <li class="dropdown-header text-start">
+                  <!-- <h6>Filter</h6> -->
+                </li>
+
+                 <li><a class="dropdown-item" href="{% url 'classroom_assignment_edit' ass_data.id %}">Edit</a></li>
+                <li><a class="dropdown-item" href="{% url 'assignment_delete' ass_data.id %}">Delete</a></li>                 
+                </ul>
+            </div>
+
+            <div class="card-body">
+              {% comment %}<h5 class="card-title">Class Code <span>{{object.class_code}}</span></h5> {% endcomment %}
+
+              <div class="d-flex align-items-center">
+                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                  <i class="ri-file-list-fill"></i>
+                </div>
+                
+                <span style="margin-left:33px;padding-top:30px;" data-bs-toggle="modal" data-bs-target="#largeModal">
+                  {{classroom_user.teacher}} posted a new assignement :   {{ ass_data.assignment.topic }} <p style="color:blue;">created {{ ass_data.assignment.created_time }}   </p>
+                </span>
+                <span style="margin-left:33px ;color:blue" >
+                    
+                </span>
+               
+                
+                  <div class="modal fade" id="largeModal" tabindex="-1">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" >{{ ass_data.assignment.topic }}</h5>
+                          
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>                        
+                        <div class="modal-body">                          
+                          <table class="table table-borderless">
+                            <thead>
+                              <tr>
+                                <th scope="col"></th>
+                                <th scope="col">Classname</th>
+                                <th scope="col">Class Code</th>
+                                <th scope="col">Assignment name</th>
+                                <th scope="col">Instruction</th>
+                                <th scope="col">Due Date</th>
+                                <th scope="col">Created Date</th>
+                                <th scope="col">Updated Date</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              
+                              <tr>
+                                <th scope="row"></th>
+                                <td>{{ass_data.assignment.classroom}}</td>
+                                <td>{{ass_data.assignment.code}}</td>                                
+                                <td>{{ass_data.assignment.topic}}</td>
+                                <td>{{ass_data.assignment.instructions}}</td>
+                                <td>{{ass_data.assignment.due_date}}</td>
+                                <td>{{ass_data.assignment.created_time}}</td>
+                                <td>{{ass_data.assignment.updated}}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>                      
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                {% comment %} <div class="ps-3">                  
+                  <span class="text-info small pt-1 fw-bold">updated</span> <span
+                    class="text-muted small pt-2 ps-1">{{ass_data.assignment.updated}}</span>
+
+                </div>  {% endcomment %}
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+
+      </div>
+    
+    </div>
+  
+  
+  </div>
+  {% endfor %}
+</section>
+
+{% endblock content %}

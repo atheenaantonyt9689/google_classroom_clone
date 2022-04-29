@@ -141,7 +141,7 @@ class AssignmentEditView(LoginRequiredMixin, TeacherRequiredMixin, UpdateView):
 class AssignmentListView(LoginRequiredMixin, ListView):
 
     model = Classrooom
-    template_name = "classroom/assignment/assignment_list.html"
+    template_name = "classroom/assignment/assignment_list_page.html"
     login_url = "login"
 
     def get_queryset(self):
