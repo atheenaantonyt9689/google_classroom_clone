@@ -31,7 +31,7 @@
                   <i class="ri-file-list-fill"></i>
                 </div>
                 
-                <span style="margin-left:33px;padding-top:30px;" data-bs-toggle="modal" data-bs-target="#largeModal">
+                <span style="margin-left:33px;padding-top:30px;" data-bs-toggle="modal" data-bs-target="#ExtralargeModal">
                   {{classroom_user.teacher}} posted a new assignement :   {{ ass_data.assignment.topic }} <p style="color:blue;">created {{ ass_data.assignment.created_time }}   </p>
                 </span>
                 <span style="margin-left:33px ;color:blue" >
@@ -39,8 +39,8 @@
                 </span>
                
                 
-                  <div class="modal fade" id="largeModal" tabindex="-1">
-                    <div class="modal-dialog modal-lg">
+                  <div class="modal fade" id="ExtralargeModal" tabindex="-1">
+                    <div class="modal-dialog modal-xl">
                       <div class="modal-content">
                         <div class="modal-header">
                           <h5 class="modal-title" >{{ ass_data.assignment.topic }}</h5>
