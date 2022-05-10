@@ -106,6 +106,16 @@ class AssignmentCreateForm(forms.ModelForm):
             "points",
             "due_date",
         ]
+        widgets = {
+            "due_date": forms.DateInput(
+                format=("%m/%d/%Y"),
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "Select a date",
+                    "type": "date",
+                },
+            ),
+        }
 
     def save(self, commit=True):
         instance = super().save(False)
@@ -120,6 +130,7 @@ class AssignmentCreateForm(forms.ModelForm):
         )
         # print("objectsss  ",feedfile_obj)
         feedfile_obj.save()
+        
         return instance
 
 
