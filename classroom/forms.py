@@ -130,62 +130,60 @@ class AssignmentCreateForm(forms.ModelForm):
         return instance
 
 
-# class AssignmentEditForm(forms.ModelForm):
+class AssignmentEditForm(forms.ModelForm):
 
-#     files = forms.FileField(
-#         widget=forms.ClearableFileInput(attrs={"multiple": True}), required=False
-#     )
-#     # assignment = forms.ModelChoiceField(
-#     #     queryset=Assignment.objects.all(), required=False
-#     # )
+    files = forms.FileField(
+        widget=forms.ClearableFileInput(attrs={"multiple": True}), required=False
+    )
+    # assignment = forms.ModelChoiceField(
+    #     queryset=Assignment.objects.all(), required=False
+    # )
 
-#     def __init__(self, *args, **kwargs):
-#         super(AssignmentEditForm, self).__init__(*args, **kwargs)
-#         self.helper = FormHelper()
-#         self.helper.form_method = "post"
-#         self.helper.add_input(Submit("submit", "Update"))
-#         self.fields["topic"].widget.attrs["placeholder"] = "Topic"
-#         self.fields["instructions"].widget.attrs["placeholder"] = "Instructions"
-#         self.fields["classroom"].queryset = Classrooom.objects.all()
-#         self.fields["student"].queryset = Student.objects.all()
-#         # self.fields["assignment"].queryset = Assignment.objects.all()
-#         self.fields["points"].widget.attrs["placeholder"] = "Points"
+    def __init__(self, *args, **kwargs):
+        super(AssignmentEditForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_method = "post"
+        self.helper.add_input(Submit("submit", "Update"))
+        self.fields["topic"].widget.attrs["placeholder"] = "Topic"
+        self.fields["instructions"].widget.attrs["placeholder"] = "Instructions"
+        self.fields["classroom"].queryset = Classrooom.objects.all()
+        self.fields["student"].queryset = Student.objects.all()
+        # self.fields["assignment"].queryset = Assignment.objects.all()
+        self.fields["points"].widget.attrs["placeholder"] = "Points"
 
-#     class Meta:
-#         model = Assignment
-#         fields = [
-#             "topic",
-#             "instructions",
-#             "files",
-#             "classroom",
-#             "student",
-#             "points",
-#             "due_date",
-#             # "assignment",
-#         ]
-#         widgets = {
-#             "due_date": forms.DateInput(
-#                 format=("%m/%d/%Y"),
-#                 attrs={
-#                     "class": "form-control",
-#                     "placeholder": "Select a date",
-#                     "type": "date",
-#                 },
-#             ),
-#         }
+    class Meta:
+        model = Assignment
+        fields = [
+            "topic",
+            "instructions",
+            "files",
+            "classroom",
+            "student",
+            "points",
+            "due_date",
+            # "assignment",
+        ]
+        widgets = {
+            "due_date": forms.DateInput(
+                format=("%m/%d/%Y"),
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "Select a date",
+                    "type": "date",
+                },
+            ),
+        }
 
-#     def save(self, commit=True):
-#         instance = super().save(False)
-#         if commit:
-#             instance.save()
-#             print("instfghfgfgfh  ", instance)
-#             files = self.cleaned_data["files"]
-#             assignment = self.cleaned_data["assignment"]
+    def save(self, commit=True):
+        instance = super().save(False)
+        if commit:
+            instance.save()
+            files = self.cleaned_data["files"]
+            assignment = instance
+            feedfile_obj, created = FeedFile.objects.update_or_create(
+                assignment=assignment, defaults={"files": files}
+            )
+            # print("objj, created ",objj, created)
+            feedfile_obj.save()
 
-#             objj, created = FeedFile.objects.update_or_create(
-#                 assignment="assignment", defaults={"files": files}
-#             )
-#             # print("objj, created ",objj, created)
-#             objj.save()
-
-#         return instance
+        return instance
