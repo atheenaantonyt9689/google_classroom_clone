@@ -79,9 +79,9 @@ class AssignmentCreateForm(forms.ModelForm):
     files = forms.FileField(
         widget=forms.ClearableFileInput(attrs={"multiple": True}), required=False
     )
-    # assignment = forms.ModelChoiceField(
-    #     queryset=Assignment.objects.all(), required=False
-    # )
+    assignment = forms.ModelChoiceField(
+        queryset=Assignment.objects.all(), required=False
+    )
 
     def __init__(self, *args, **kwargs):
         super(AssignmentCreateForm, self).__init__(*args, **kwargs)
@@ -92,7 +92,7 @@ class AssignmentCreateForm(forms.ModelForm):
         self.fields["instructions"].widget.attrs["placeholder"] = "Instructions"
         self.fields["classroom"].queryset = Classrooom.objects.all()
         self.fields["student"].queryset = Student.objects.all()
-        # self.fields["assignment"].queryset = Assignment.objects.all()
+        self.fields["assignment"].queryset = Assignment.objects.all()
         self.fields["points"].widget.attrs["placeholder"] = "Points"
 
     class Meta:
@@ -119,14 +119,18 @@ class AssignmentCreateForm(forms.ModelForm):
 
     def save(self, commit=True):
         instance = super().save(False)
+        # print("first instance ",instance)
         if commit:
-            instance = super().save(commit)
-            files = self.cleaned_data["files"]
-            feedfile_obj, created = FeedFile.objects.get_or_create(
-                assignment=instance, files=files
-            )
-            feedfile_obj.save()
-
+            instance.save()
+            file = self.cleaned_data["files"]
+            assignment = self.cleaned_data["assignment"]
+        feedfile_obj = FeedFile.objects.create(
+            files=file,
+            assignment=assignment,
+        )
+        # print("objectsss  ",feedfile_obj)
+        feedfile_obj.save()
+        
         return instance
 
 
@@ -135,9 +139,9 @@ class AssignmentEditForm(forms.ModelForm):
     files = forms.FileField(
         widget=forms.ClearableFileInput(attrs={"multiple": True}), required=False
     )
-    # assignment = forms.ModelChoiceField(
-    #     queryset=Assignment.objects.all(), required=False
-    # )
+    assignment = forms.ModelChoiceField(
+        queryset=Assignment.objects.all(), required=False
+    )
 
     def __init__(self, *args, **kwargs):
         super(AssignmentEditForm, self).__init__(*args, **kwargs)
@@ -148,7 +152,7 @@ class AssignmentEditForm(forms.ModelForm):
         self.fields["instructions"].widget.attrs["placeholder"] = "Instructions"
         self.fields["classroom"].queryset = Classrooom.objects.all()
         self.fields["student"].queryset = Student.objects.all()
-        # self.fields["assignment"].queryset = Assignment.objects.all()
+        self.fields["assignment"].queryset = Assignment.objects.all()
         self.fields["points"].widget.attrs["placeholder"] = "Points"
 
     class Meta:
@@ -161,29 +165,18 @@ class AssignmentEditForm(forms.ModelForm):
             "student",
             "points",
             "due_date",
-            # "assignment",
+            "assignment",
         ]
-        widgets = {
-            "due_date": forms.DateInput(
-                format=("%m/%d/%Y"),
-                attrs={
-                    "class": "form-control",
-                    "placeholder": "Select a date",
-                    "type": "date",
-                },
-            ),
-        }
 
     def save(self, commit=True):
         instance = super().save(False)
         if commit:
             instance.save()
-            print("instfghfgfgfh  ", instance)
             files = self.cleaned_data["files"]
             assignment = self.cleaned_data["assignment"]
 
             objj, created = FeedFile.objects.update_or_create(
-                assignment="assignment", defaults={"files": files}
+                assignment=assignment, defaults={"files": files}
             )
             # print("objj, created ",objj, created)
             objj.save()
