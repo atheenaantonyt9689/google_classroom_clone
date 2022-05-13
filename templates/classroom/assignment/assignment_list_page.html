@@ -76,8 +76,7 @@
                             </tbody>
                           </table>
 
-                           <p style="color:blue">Files attched : {{ass_data.files}}</p>
-
+                            <p style="color:blue"> Files attched : {% if  ass_data.files %} {{ass_data.files.url}} {% endif %}</p>
 
                         </div>
                         <div class="modal-footer">
